@@ -1,22 +1,23 @@
-import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
-import {
-  Button,
-  Center,
-  ChakraProvider,
-  Flex,
-  Input,
-} from "@chakra-ui/react";
-
-import { Header } from "./components/Header";
-import { Card } from "./components/Card";
+import { ChakraProvider } from "@chakra-ui/react";
+import { Layout } from "./components/Layout";
+import { AppContextProvider } from "./Providers/AppContext";
+import { MainRoutes } from "./routes";
+import { createLocalStorage } from "./services/Storage";
 
 function App() {
+  createLocalStorage();
   return (
-    <ChakraProvider>
-      <Header />
-      <Card />
-    </ChakraProvider>
+    <BrowserRouter>
+      <AppContextProvider>
+        <ChakraProvider>
+          <Layout>
+            <MainRoutes />
+          </Layout>
+        </ChakraProvider>
+      </AppContextProvider>
+    </BrowserRouter>
   );
 }
 

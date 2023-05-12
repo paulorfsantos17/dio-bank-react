@@ -1,19 +1,11 @@
-import React from "react";
-import { login } from "../../services/Login";
+import { Flex } from "@chakra-ui/react";
 
-import {
-  Button,
-  Center,
-  Flex,
-  Input,
-} from "@chakra-ui/react";
-
-export const Card = () => {
+export const Card = ({ children }: any) => {
   return (
     <Flex
-      minHeight='100vh'
-      width='100vw'
-      backgroundColor='#9413dc'
+      maxHeight='100%'
+      minHeight='82.6%'
+      width='100%'
       padding='25px'
       alignItems='center'
       justifyContent='center'>
@@ -26,19 +18,7 @@ export const Card = () => {
         justifyContent='center'
         flexDirection='column'
         gap='16px'>
-        <Center>Faça login</Center>
-
-        <Input placeholder='Email' />
-        <Input placeholder='Password' />
-        <Button
-          onClick={login}
-          size='lg'
-          minWidth='100%'
-          backgroundColor='#9413dc'
-          _hover={{ bgColor: "#9413dc77" }}
-          transitionDuration='.5s'>
-          Entrar
-        </Button>
+        {children}
       </Flex>
     </Flex>
   );
