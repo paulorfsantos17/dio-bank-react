@@ -2,6 +2,7 @@ import { Box, Button, Flex, Heading } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { AppContext } from "../../Providers/AppContext";
 import { useNavigate } from "react-router-dom";
+import { changeLocalStorage } from "../../services/Storage";
 
 export const Header = () => {
   const { setIsLoggedIn, isLoggedIn } = useContext(AppContext);
@@ -9,6 +10,7 @@ export const Header = () => {
 
   const logout = (): void => {
     setIsLoggedIn(false);
+    changeLocalStorage({ login: false });
     navigate("/");
   };
   return (

@@ -10,12 +10,8 @@ export const MainRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      {isLoggedIn && (
-        <>
-          <Route path='/conta/:id' element={<Conta />} />
-          <Route path='/contaInfo' element={<ContaInfo />} />
-        </>
-      )}
+      <Route path='/conta/:id' element={<Conta />} />
+      <Route path='/contaInfo' element={<ContaInfo />} />
       <Route path='*' element={<Navigate to='/' />} />
     </Routes>
   );

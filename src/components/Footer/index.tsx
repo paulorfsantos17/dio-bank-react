@@ -3,7 +3,13 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <Box w='100%' h='60px' background='#ffffff66' padding={5}>
+    <Box
+      w='100%'
+      h='60px'
+      background='#ffffff66'
+      padding={5}
+      position='absolute'
+      bottom={0}>
       <Center>
         <Heading size='md'>Criado por Paulo Santos Dev</Heading>
       </Center>

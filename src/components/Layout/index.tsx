@@ -9,7 +9,7 @@ interface ILayout {
 
 export const Layout = ({ children }: ILayout) => {
   return (
-    <Box backgroundColor='#9413dc' height='100vh'>
+    <Box backgroundColor='#9413dc' height='100vh' position='relative'>
       <Header />
 
       {children}

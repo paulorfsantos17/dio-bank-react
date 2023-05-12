@@ -4,20 +4,21 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { Layout } from "./components/Layout";
 import { AppContextProvider } from "./Providers/AppContext";
 import { MainRoutes } from "./routes";
-import { createLocalStorage } from "./services/Storage";
+import { createLocalStorage, getAllLocalStorage } from "./services/Storage";
 
 function App() {
-  createLocalStorage();
+  !getAllLocalStorage() && createLocalStorage();
+
   return (
-    <BrowserRouter>
-      <AppContextProvider>
+    <AppContextProvider>
+      <BrowserRouter>
         <ChakraProvider>
           <Layout>
             <MainRoutes />
           </Layout>
         </ChakraProvider>
-      </AppContextProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AppContextProvider>
   );
 }
 
