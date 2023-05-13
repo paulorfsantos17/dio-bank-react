@@ -1,25 +1,15 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Center, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 
 import { CardInfo } from "../../components/CardInfo";
 
-import { api } from "../../api";
-import { useNavigate, useParams } from "react-router-dom";
-import { AppContext } from "../../Providers/AppContext";
-
-interface IUserData {
-  name: string;
-  email: string;
-  password: string;
-  balance: number;
-  id: string;
-}
+import { IConta, api } from "../../api";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 export const Conta = () => {
-  const [userData, setUserData] = useState<IUserData>();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isLoggedIn } = useContext(AppContext);
+  const [userData, setUserData] = useState<IConta>();
 
   const convertDataToString = (): string => {
     const actualDate = new Date();
@@ -35,16 +25,14 @@ export const Conta = () => {
   };
 
   useEffect(() => {
-    const getData = async () => {
-      const data: IUserData | any = await api;
+    const getUser = async () => {
+      const data: any = await api;
       setUserData(data);
     };
-    getData();
-  }, [userData]);
+    getUser();
+  }, []);
 
-  !isLoggedIn && navigate("/");
-
-  if (!userData?.name) {
+  if (!userData) {
     return (
       <Center marginTop={12}>
         <Spinner size='xl' color='#fff' />
@@ -53,7 +41,6 @@ export const Conta = () => {
   }
 
   if (userData && userData.id !== id) {
-    console.log(id);
     navigate("/");
   }
 
@@ -61,11 +48,13 @@ export const Conta = () => {
     <Box height='100%'>
       <Center>
         <SimpleGrid columns={2} spacing={8} paddingTop='16px'>
-          <CardInfo
-            mainContent={`Bem vindo ${userData?.name}`}
-            content={convertDataToString()}
-          />
-          <CardInfo mainContent='Saldo' content={`R$ ${userData.balance}`} />
+          <Link to='/contaInfo'>
+            <CardInfo
+              mainContent={`Bem vindo ${userData?.name}`}
+              content={convertDataToString()}
+            />
+          </Link>
+          <CardInfo mainContent='Saldo' content={`R$ ${userData?.balance}`} />
         </SimpleGrid>
       </Center>
     </Box>

@@ -1,7 +1,15 @@
-import { changeLocalStorage, createLocalStorage, getAllLocalStorage } from ".";
+import {
+  IDioBank,
+  changeLocalStorage,
+  createLocalStorage,
+  getAllLocalStorage,
+} from ".";
 
-const dioBank = {
-  login: false,
+const createDioBank = {};
+const setDioBank: IDioBank = {
+  name: "Paulo Santos",
+  balance: 3000.0,
+  id: "1",
 };
 
 describe("storage", () => {
@@ -18,16 +26,16 @@ describe("storage", () => {
 
     expect(mockSetItem).toHaveBeenCalledWith(
       "diobank",
-      JSON.stringify(dioBank)
+      JSON.stringify(createDioBank)
     );
   });
 
   it("Deve alterar o valor do objeto no local storage", () => {
-    changeLocalStorage({ login: true });
+    changeLocalStorage(setDioBank);
 
     expect(mockSetItem).toHaveBeenCalledWith(
       "diobank",
-      JSON.stringify({ login: true })
+      JSON.stringify(setDioBank)
     );
   });
 });

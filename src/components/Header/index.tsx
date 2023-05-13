@@ -9,8 +9,8 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const logout = (): void => {
+    localStorage.clear();
     setIsLoggedIn(false);
-    changeLocalStorage({ login: false });
     navigate("/");
   };
   return (

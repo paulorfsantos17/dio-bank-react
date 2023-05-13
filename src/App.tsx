@@ -7,8 +7,6 @@ import { MainRoutes } from "./routes";
 import { createLocalStorage, getAllLocalStorage } from "./services/Storage";
 
 function App() {
-  !getAllLocalStorage() && createLocalStorage();
-
   return (
     <AppContextProvider>
       <BrowserRouter>
